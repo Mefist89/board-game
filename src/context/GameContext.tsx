@@ -37,11 +37,11 @@ interface GameContextType {
 }
 
 interface GameHistoryEntry {
- question: string;
-  userAnswer: string | number;
-  correctAnswer: string | number;
+  question: string;
+  userAnswer: string;
+  correctAnswer: string;
   isCorrect: boolean;
-  score: number;
+  scoreChange: number;
   attempts: number;
   timestamp: Date;
 }
@@ -152,11 +152,18 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
   // Game logic functions
  const rollDice = () => {
-   if (isRolling || position >= totalSquares - 1) return; // Prevent rolling if game is finished
+   // Double-check game state before starting dice roll
+   if (isRolling || position >= totalSquares - 1 || screen === 'finish') return; // Prevent rolling if game is finished
    setIsRolling(true);
    setTotalRolls(totalRolls + 1);
    let rolls = 0;
    const rollInterval = setInterval(() => {
+     // Additional check during the rolling animation
+     if (position >= totalSquares - 1 || screen === 'finish') {
+       clearInterval(rollInterval);
+       setIsRolling(false);
+       return;
+     }
      setDiceValue(Math.floor(Math.random() * 6) + 1);
      rolls++;
      if (rolls > 10) {
@@ -164,7 +171,12 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
        const finalValue = Math.floor(Math.random() * 6) + 1;
        setDiceValue(finalValue);
        setIsRolling(false);
-       setTimeout(() => showQuestion(), 300);
+       setTimeout(() => {
+         // Check again if game is still active before showing question
+         if (position < totalSquares - 1 && screen !== 'finish') {
+           showQuestion();
+         }
+       }, 300);
      }
    }, 100);
  };
@@ -196,9 +208,12 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       correct: newCorrectIndex
     };
     
-    setCurrentQuestion(randomizedQuestion);
-    setSelectedAnswer(null);
-    setShowResult(false);
+    // Double-check game state before setting the question to prevent race conditions
+    if (position < totalSquares - 1 && screen !== 'finish') {
+      setCurrentQuestion(randomizedQuestion);
+      setSelectedAnswer(null);
+      setShowResult(false);
+    }
   };
 
   const handleAnswer = () => {
@@ -208,30 +223,75 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     setShowResult(true);
 
     if (isCorrect) {
-      const points = attempts === 1 ? 100 : attempts === 2 ? 50 : 25;
+      // On correct answer: move forward by dice value and get points based on attempts
+      let points = 0;
+      if (attempts === 1) {
+        points = 100;
+      } else if (attempts === 2) {
+        points = 50;
+      } else if (attempts === 3) {
+        points = 25;
+      }
       setScore(score + points);
-      setTimeout(() => {
-        const newPosition = Math.min(position + (diceValue || 0), totalSquares - 1);
-        setPosition(newPosition);
+
+      addToGameHistory({
+        question: currentQuestion.q,
+        userAnswer: currentQuestion.answers[selectedAnswer],
+        correctAnswer: currentQuestion.answers[currentQuestion.correct],
+        isCorrect: true,
+        scoreChange: points,
+        attempts,
+        timestamp: new Date(),
+      });
+      
+      // Calculate the new position after dice roll
+      const newPosition = position + (diceValue || 0);
+      
+      // Check immediately if the player crosses or reaches the last square
+      if (newPosition >= totalSquares - 1) {
+        // End the game immediately without timeout
+        setPosition(totalSquares - 1);
         setCurrentQuestion(null);
         setDiceValue(null);
         setAttempts(1);
-        if (newPosition >= totalSquares - 1) {
+        
+        // Show congratulatory message and transition after 1 second
+        setTimeout(() => {
           setScreen('finish');
-        }
-      }, 1500);
-    } else {
-      setTimeout(() => {
-        if (attempts < 3) {
-          setAttempts(attempts + 1);
-          setShowResult(false);
-          setSelectedAnswer(null);
-        } else {
+        }, 1000); // 1 second delay before transitioning
+      } else {
+        // Player doesn't reach the end, continue the game normally after delay
+        setTimeout(() => {
+          setPosition(newPosition);
           setCurrentQuestion(null);
           setDiceValue(null);
           setAttempts(1);
-        }
-      }, 1500);
+        }, 1500);
+      }
+    } else {
+      // On incorrect answer: check for more attempts
+      if (attempts < 3) {
+        // Allow another attempt
+        setAttempts(attempts + 1);
+        setSelectedAnswer(null);
+        setShowResult(false);
+      } else {
+        // No more attempts, stay in the same position
+        addToGameHistory({
+            question: currentQuestion.q,
+            userAnswer: currentQuestion.answers[selectedAnswer],
+            correctAnswer: currentQuestion.answers[currentQuestion.correct],
+            isCorrect: false,
+            scoreChange: 0,
+            attempts,
+            timestamp: new Date(),
+        });
+        setTimeout(() => {
+          setCurrentQuestion(null);
+          setDiceValue(null);
+          setAttempts(1);
+        }, 1500);
+      }
     }
   };
 

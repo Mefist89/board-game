@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useGame } from '../context/GameContext';
 
 const GameBoard: React.FC = () => {
   const { position, colors } = useGame();
 
   // Определяем путь лабиринта: [x, y] координаты для каждой клетки
-  const path: [number, number][] = [
+  const path = useMemo<[number, number][]>(() => [
     // 9 право
     [0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0], [8, 0],
     // 6 вниз
@@ -28,17 +28,25 @@ const GameBoard: React.FC = () => {
     [0, 7], [0, 8],
     // 8 право
     [1, 8], [2, 8], [3, 8], [4, 8], [5, 8], [6, 8], [7, 8], [8, 8]
-  ];
+  ], []);
 
   const gridWidth = 9;
   const gridHeight = 9;
+
+  const pathMap = useMemo(() => {
+    const map = new Map<string, number>();
+    path.forEach(([x, y], index) => {
+      map.set(`${x}-${y}`, index);
+    });
+    return map;
+  }, [path]);
   
-  const renderBoard = () => {
+  const renderBoard = useMemo(() => {
     const grid = [];
     for (let y = 0; y < gridHeight; y++) {
       for (let x = 0; x < gridWidth; x++) {
-        const pathIndex = path.findIndex(p => p[0] === x && p[1] === y);
-        const isPath = pathIndex !== -1;
+        const pathIndex = pathMap.get(`${x}-${y}`);
+        const isPath = pathIndex !== undefined;
         const isPlayerHere = pathIndex === position;
         
         if (isPath) {
@@ -47,7 +55,7 @@ const GameBoard: React.FC = () => {
               key={`${x}-${y}`}
               className="relative flex items-center justify-center square-cell"
               style={{
-                backgroundColor: colors[pathIndex % colors.length],
+                backgroundColor: colors[pathIndex! % colors.length],
                 border: '3px solid #000',
                 borderRadius: '8px',
                 gridColumn: x + 1,
@@ -67,7 +75,7 @@ const GameBoard: React.FC = () => {
       }
     }
     return grid;
-  };
+  }, [position, colors, path, pathMap]);
 
   return (
     <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-6 mb-4 md:mb-6">
@@ -81,7 +89,7 @@ const GameBoard: React.FC = () => {
           columnGap: '0',
           minWidth: 'fit-content'
         }}>
-          {renderBoard()}
+          {renderBoard}
         </div>
       </div>
     </div>
