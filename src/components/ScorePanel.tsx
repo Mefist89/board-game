@@ -3,7 +3,7 @@ import { Trophy, Dices } from 'lucide-react';
 import { useGame } from '../context/GameContext';
 
 const ScorePanel: React.FC = () => {
-  const { score, totalRolls, translations, screen, setScreen } = useGame();
+  const { score, totalRolls, translations, setScreen } = useGame();
   const t = translations[useGame().language];
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dices, Trophy, Info, User } from 'lucide-react';
+import { Info, User } from 'lucide-react';
 import { useGame } from '../context/GameContext';
 
 const MenuPage: React.FC = () => {

@@ -9,7 +9,7 @@ const API_KEY = 'AIzaSyBhm9nNi5C_cP8yraSZL3jdgzSSFJskn8I'; // ЗАМЕНИТЕ �
 const SPREADSHEET_ID = '1vZaeb_BxK3ehqAxW3YzvhA7FBG4m6nRlxgbL7Y-0434'; // ЗАМЕНИТЕ НА ID ВАШЕЙ ТАБЛИЦЫ
 // Укажите диапазон, например, 'Лист1'!A:C (для столбцов A, B, C на листе "Лист1")
 // Или просто 'A:C' если вы используете первый лист по умолчанию.
-const RANGE = 'A:C';
+// const RANGE = 'A:C'; // Unused variable removed
 
 interface UserInfo {
   firstName: string;

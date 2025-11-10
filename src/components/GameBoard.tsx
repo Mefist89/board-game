@@ -2,7 +2,7 @@ import React from 'react';
 import { useGame } from '../context/GameContext';
 
 const GameBoard: React.FC = () => {
-  const { position, colors, totalSquares } = useGame();
+  const { position, colors } = useGame();
 
   // Определяем путь лабиринта: [x, y] координаты для каждой клетки
   const path: [number, number][] = [
