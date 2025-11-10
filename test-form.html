@@ -140,36 +140,34 @@
             try {
                             // Подготовка данных для отправки
                             const data = {
-                                nume: lastName,
-                                prenume: firstName,
-                                clasa: group,
-                                scor_numeric: score,
-                                scor_total: rolls
+                                firstName: firstName,
+                                lastName: lastName,
+                                group: group,
+                                score: score,
+                                rolls: rolls
                             };
                 
                 // Отправка данных в Google Sheets через Google Apps Script
-                                const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxgWV2eTIBYVa_PQ_WK6geX10cisRJTUFUKX_OwUGrjxzcD_JasuDHhvS7GPvAYW_Jm/exec';
+                const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby_WHi0KnpczIXPE0XNQB3KWuIj30W5nELd3_R7TZZ3lIjIE0MxGTc7UY4BPQx2Q6hDVg/exec';
                 
                 const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors', // Важно для Google Apps Script
+                    mode: 'no-cors', // Required for Google Apps Script from local files
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(data)
                 });
-                
-                // Так как при no-cors не возвращается ответ, предполагаем успех
                 statusDiv.className = 'status success';
                 statusDiv.innerHTML = `
-                    <strong>✅ Данные успешно отправлены!</strong><br>
+                    <strong>✅ Данные отправлены! (Проверка ответа невозможна из-за CORS)</strong><br>
                     Тип теста: ${testType === 'basic' ? 'Базовая отправка' : 'Детальная отправка'}<br>
                     Пользователь: ${firstName} ${lastName}<br>
                     Оценка: ${score}/10 (${Math.round((score / 10) * 100)}%)<br>
                     Группа: ${group}
                 `;
                 
-                console.log('Данные успешно отправлены в Google Sheets:', data);
+                console.log('Данные отправлены в Google Sheets (проверка ответа невозможна):', data);
                 
             } catch (error) {
                 console.error('Ошибка при отправке данных:', error);

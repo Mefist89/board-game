@@ -14,31 +14,58 @@ interface UserInfo {
 // Оставляем только простую отправку основных полей
 
 // URL для Google Apps Script Web App
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxgWV2eTIBYVa_PQ_WK6geX10cisRJTUFUKX_OwUGrjxzcD_JasuDHhvS7GPvAYW_Jm/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby_WHi0KnpczIXPE0XNQB3KWuIj30W5nELd3_R7TZZ3lIjIE0MxGTc7UY4BPQx2Q6hDVg/exec';
 
 export const submitUserInfoToGoogleSheets = async (userInfo: UserInfo): Promise<void> => {
   try {
     // Подготовка данных для отправки
-        const data = {
-          nume: userInfo.lastName,
-          prenume: userInfo.firstName,
-          clasa: userInfo.group,
-          scor_numeric: userInfo.score,
-          scor_total: userInfo.rolls // Используем rolls как total, так как это более логично
-        };
+    const data = {
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+      group: userInfo.group,
+      score: userInfo.score,
+      rolls: userInfo.rolls
+    };
 
     // Отправка данных в Google Sheets через Google Apps Script
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors', // Важно для Google Apps Script
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
-        });
+    let response;
+    let success = false;
     
-        // Так как при no-cors не возвращается ответ, предполагаем успех
+    try {
+      response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+      
+      // Проверяем статус ответа
+      if (response.ok) {
+        success = true;
         console.log('Данные успешно отправлены в Google Sheets через Google Apps Script');
+      }
+    } catch (error) {
+      // If fetch fails (possibly due to CORS), we'll try with no-cors mode
+      console.warn('Fetch failed, trying with no-cors mode:', error);
+      
+      response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Fallback for CORS issues
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+      
+      // With no-cors, we assume success since we can't check the response
+      success = true;
+      console.log('Данные отправлены в Google Sheets через Google Apps Script (проверка ответа невозможна)');
+    }
+    
+    if (!success) {
+      throw new Error('Failed to submit data to Google Sheets');
+    }
   } catch (error) {
     console.error('Ошибка при отправке данных в Google Sheets через Google Apps Script:', error);
     throw error; // Пробрасываем ошибку, чтобы обработать её в компоненте
