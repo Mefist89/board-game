@@ -68,17 +68,18 @@ export const submitUserInfoToGoogleSheets = async (userInfo: UserInfo): Promise<
       grafic3_punctaj: 0
     };
 
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors', // Важно для Google Apps Script
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
-    });
-
-    // Так как при no-cors не возвращается ответ, предполагаем успех
-    console.log('Данные успешно отправлены в Google Sheets через Google Apps Script');
+    // Отправка данных в Google Sheets через Google Apps Script
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors', // Важно для Google Apps Script
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+    
+        // Так как при no-cors не возвращается ответ, предполагаем успех
+        console.log('Данные успешно отправлены в Google Sheets через Google Apps Script');
   } catch (error) {
     console.error('Ошибка при отправке данных в Google Sheets через Google Apps Script:', error);
     throw error; // Пробрасываем ошибку, чтобы обработать её в компоненте
@@ -113,17 +114,18 @@ export const submitDetailedResultsToGoogleSheets = async (detailedResult: Detail
       grafic3_punctaj: detailedResult.task3Score
     };
 
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors', // Важно для Google Apps Script
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
-    });
-
-    // Так как при no-cors не возвращается ответ, предполагаем успех
-    console.log('Детальные результаты успешно отправлены в Google Sheets через Google Apps Script');
+    // Отправка данных в Google Sheets через Google Apps Script
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors', // Важно для Google Apps Script
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+    
+        // Так как при no-cors не возвращается ответ, предполагаем успех
+        console.log('Детальные результаты успешно отправлены в Google Sheets через Google Apps Script');
   } catch (error) {
     console.error('Ошибка при отправке детальных результатов в Google Sheets через Google Apps Script:', error);
     throw error; // Пробрасываем ошибку, чтобы обработать её в компоненте
