@@ -11,7 +11,7 @@ Reach the finish line by correctly answering questions from multiple academic su
 
 ### 🎲 Gameplay Mechanics
 - **Movement**: Roll dice to determine how many spaces to move
-- **Questions**: Answer questions from math, chemistry, biology, physics, geography, and computer science
+- **Questions**: Answer questions from math, chemistry, biology, physics, geography, and computer science (questions and answers are randomly selected and displayed in random order)
 - **Scoring**: Earn points based on attempts (1st: 100 points, 2nd: 50 points, 3rd: 25 points)
 - **Progression**: Correct answers advance your position; incorrect answers may send you back
 
@@ -202,6 +202,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - Mobile responsiveness may need further optimization for smaller screens
 - Game history tracking could be enhanced with more detailed analytics
+
+## ✅ Fixed Issues
+
+- Fixed bug where dice would be rolled again after reaching the finish line
+- Fixed issue where questions could still appear after game completion
 
 ## 🚧 Future Enhancements
 

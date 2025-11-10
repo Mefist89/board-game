@@ -152,33 +152,57 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
   // Game logic functions
  const rollDice = () => {
-    if (isRolling) return;
-    setIsRolling(true);
-    setTotalRolls(totalRolls + 1);
-    let rolls = 0;
-    const rollInterval = setInterval(() => {
-      setDiceValue(Math.floor(Math.random() * 6) + 1);
-      rolls++;
-      if (rolls > 10) {
-        clearInterval(rollInterval);
-        const finalValue = Math.floor(Math.random() * 6) + 1;
-        setDiceValue(finalValue);
-        setIsRolling(false);
-        setTimeout(() => showQuestion(), 300);
-      }
-    }, 100);
-  };
+   if (isRolling || position >= totalSquares - 1) return; // Prevent rolling if game is finished
+   setIsRolling(true);
+   setTotalRolls(totalRolls + 1);
+   let rolls = 0;
+   const rollInterval = setInterval(() => {
+     setDiceValue(Math.floor(Math.random() * 6) + 1);
+     rolls++;
+     if (rolls > 10) {
+       clearInterval(rollInterval);
+       const finalValue = Math.floor(Math.random() * 6) + 1;
+       setDiceValue(finalValue);
+       setIsRolling(false);
+       setTimeout(() => showQuestion(), 300);
+     }
+   }, 100);
+ };
 
   const showQuestion = () => {
+    // Check if game has already been won or is on finish screen
+    if (position >= totalSquares - 1 || screen === 'finish') return;
+    
     const questionList = questions[language as keyof typeof questions];
     const randomQuestion = questionList[Math.floor(Math.random() * questionList.length)];
-    setCurrentQuestion(randomQuestion);
+    
+    // Randomize the answers while keeping track of the correct answer
+    const answersWithIndex = randomQuestion.answers.map((answer, index) => ({
+      answer,
+      originalIndex: index
+    }));
+    
+    // Shuffle the answers
+    const shuffledAnswers = [...answersWithIndex].sort(() => Math.random() - 0.5);
+    
+    // Find the new index of the correct answer after shuffling
+    const newCorrectIndex = shuffledAnswers.findIndex(item =>
+      item.originalIndex === randomQuestion.correct
+    );
+    
+    const randomizedQuestion = {
+      q: randomQuestion.q,
+      answers: shuffledAnswers.map(item => item.answer),
+      correct: newCorrectIndex
+    };
+    
+    setCurrentQuestion(randomizedQuestion);
     setSelectedAnswer(null);
     setShowResult(false);
   };
 
   const handleAnswer = () => {
-    if (selectedAnswer === null || !currentQuestion) return;
+    if (selectedAnswer === null || !currentQuestion || position >= totalSquares - 1 || screen === 'finish') return;
     
     const isCorrect = selectedAnswer === currentQuestion!.correct;
     setShowResult(true);

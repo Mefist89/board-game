@@ -3,19 +3,21 @@ import { Dices } from 'lucide-react';
 import { useGame } from '../context/GameContext';
 
 const DiceRoll: React.FC = () => {
-  const { 
-    diceValue, 
-    isRolling, 
-    rollDice, 
-    currentQuestion, 
-    translations, 
-    language 
+  const {
+    diceValue,
+    isRolling,
+    rollDice,
+    currentQuestion,
+    translations,
+    language,
+    position,
+    totalSquares
   } = useGame();
   
   const t = translations[language];
 
   const rollDiceHandler = () => {
-    if (isRolling) return;
+    if (isRolling || position >= totalSquares - 1) return;
     rollDice();
   };
 
@@ -29,12 +31,12 @@ const DiceRoll: React.FC = () => {
         </div>
       )}
       
-      {!currentQuestion && (
+      {!currentQuestion && position < totalSquares - 1 && (
         <button
           onClick={rollDiceHandler}
-          disabled={isRolling}
+          disabled={isRolling || position >= totalSquares - 1}
           className={`py-3 md:py-4 px-6 md:px-8 rounded-xl font-bold text-lg md:text-xl transition transform hover:scale-105 flex items-center gap-3 mx-auto ${
-            isRolling
+            isRolling || position >= totalSquares - 1
               ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
               : 'bg-blue-500 hover:bg-blue-600 text-white'
           }`}

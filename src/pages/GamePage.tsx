@@ -6,7 +6,7 @@ import DiceRoll from '../components/DiceRoll';
 import { useGame } from '../context/GameContext';
 
 const GamePage: React.FC = () => {
-  const { currentQuestion } = useGame();
+  const { currentQuestion, screen, totalSquares, position } = useGame();
 
   // Добавляем стили для адаптивности
   useEffect(() => {
@@ -62,7 +62,7 @@ const GamePage: React.FC = () => {
       <div className="max-w-4xl mx-auto">
         <ScorePanel />
         <GameBoard />
-        {currentQuestion ? <Question /> : <DiceRoll />}
+        {screen !== 'finish' && position < totalSquares - 1 && (currentQuestion ? <Question /> : <DiceRoll />)}
       </div>
     </div>
   );
