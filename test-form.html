@@ -138,66 +138,14 @@
             statusDiv.innerHTML = '📤 Отправка данных...';
             
             try {
-                // Подготовка данных для отправки
-                let data;
-                
-                if (testType === 'basic') {
-                    // Базовая отправка
-                    data = {
-                        nume: lastName,
-                        prenume: firstName,
-                        clasa: group,
-                        scor_numeric: score,
-                        scor_total: 10,
-                        scor_format: `${score}/10`,
-                        procent: `${Math.round((score / 10) * 100)}%`,
-                        evaluare: score === 10 ? 'EXCELENT! 🏆' : score >= 7 ? 'FOARTE BINE! 👍' : score >= 5 ? 'BINE, dar mai exersează! 📚' : 'Ai nevoie de mai multă practică! 💪',
-                        data_ora: new Date().toLocaleString('ro-RO'),
-                        verificare_detalii: JSON.stringify([]),
-                        grafic1_raspuns: '',
-                        grafic1_corect_functie: '',
-                        grafic1_status: '',
-                        grafic1_punctaj: 0,
-                        grafic2_raspuns: '',
-                        grafic2_corect_functie: '',
-                        grafic2_status: '',
-                        grafic2_punctaj: 0,
-                        grafic3_raspuns: '',
-                        grafic3_corect_functie: '',
-                        grafic3_status: '',
-                        grafic3_punctaj: 0
-                    };
-                } else {
-                    // Детальная отправка
-                    data = {
-                        nume: lastName,
-                        prenume: firstName,
-                        clasa: group,
-                        scor_numeric: score,
-                        scor_total: 10,
-                        scor_format: `${score}/10`,
-                        procent: `${Math.round((score / 10) * 100)}%`,
-                        evaluare: score === 10 ? 'EXCELENT! 🏆' : score >= 7 ? 'FOARTE BINE! 👍' : score >= 5 ? 'BINE, dar mai exersează! 📚' : 'Ai nevoie de mai multă practică! 💪',
-                        data_ora: new Date().toLocaleString('ro-RO'),
-                        verificare_detalii: JSON.stringify([
-                            { task: 1, userAnswer: 'v = 2 + 3t', correctAnswer: 'v = 2 + 3t', isCorrect: true, score: 1 },
-                            { task: 2, userAnswer: 'v = 1 + 4t', correctAnswer: 'v = 1 + 4t', isCorrect: true, score: 1 },
-                            { task: 3, userAnswer: 'v = 5 + 2t', correctAnswer: 'v = 5 + 2t', isCorrect: true, score: 1 }
-                        ]),
-                        grafic1_raspuns: 'v = 2 + 3t',
-                        grafic1_corect_functie: 'v = 2 + 3t',
-                        grafic1_status: 'CORECT',
-                        grafic1_punctaj: 1,
-                        grafic2_raspuns: 'v = 1 + 4t',
-                        grafic2_corect_functie: 'v = 1 + 4t',
-                        grafic2_status: 'CORECT',
-                        grafic2_punctaj: 1,
-                        grafic3_raspuns: 'v = 5 + 2t',
-                        grafic3_corect_functie: 'v = 5 + 2t',
-                        grafic3_status: 'CORECT',
-                        grafic3_punctaj: 1
-                    };
-                }
+                            // Подготовка данных для отправки
+                            const data = {
+                                nume: lastName,
+                                prenume: firstName,
+                                clasa: group,
+                                scor_numeric: score,
+                                scor_total: rolls
+                            };
                 
                 // Отправка данных в Google Sheets через Google Apps Script
                                 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxgWV2eTIBYVa_PQ_WK6geX10cisRJTUFUKX_OwUGrjxzcD_JasuDHhvS7GPvAYW_Jm/exec';
