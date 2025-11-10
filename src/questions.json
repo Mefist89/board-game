@@ -1,0 +1,416 @@
+{
+  "ru": [
+    {
+      "q": "Чему равен sin(π/2)?",
+      "answers": ["0", "1", "-1", "√2/2"],
+      "correct": 1
+    },
+    {
+      "q": "Производная функции f(x) = x³?",
+      "answers": ["x²", "3x²", "3x", "x³/3"],
+      "correct": 1
+    },
+    {
+      "q": "Решите уравнение: 2x + 5 = 13",
+      "answers": ["x = 3", "x = 4", "x = 5", "x = 6"],
+      "correct": 1
+    },
+    {
+      "q": "Чему равен cos(0)?",
+      "answers": ["0", "1", "-1", "√3/2"],
+      "correct": 1
+    },
+    {
+      "q": "Интеграл ∫2x dx = ?",
+      "answers": ["x", "x² + C", "2x² + C", "x²/2 + C"],
+      "correct": 1
+    },
+    {
+      "q": "Логарифм log₂(8) = ?",
+      "answers": ["2", "3", "4", "8"],
+      "correct": 1
+    },
+    {
+      "q": "Чему равно значение √81?",
+      "answers": ["7", "8", "9", "10"],
+      "correct": 2
+    },
+    {
+      "q": "Что является основной единицей наследственности?",
+      "answers": ["Клетка", "Ген", "Белок", "Хромосома"],
+      "correct": 1
+    },
+    {
+      "q": "Процесс превращения света в энергию у растений называется...",
+      "answers": ["Фотосинтез", "Дыхание", "Транспирация", "Осмос"],
+      "correct": 0
+    },
+    {
+      "q": "Какой элемент является основой органической химии?",
+      "answers": ["Кислород", "Водород", "Азот", "Углерод"],
+      "correct": 3
+    },
+    {
+      "q": "Какой тип ткани отвечает за передачу нервных импульсов?",
+      "answers": ["Эпителиальная", "Соединительная", "Мышечная", "Нервная"],
+      "correct": 3
+    },
+    {
+      "q": "Какой орган является частью как дыхательной, так и пищеварительной систем?",
+      "answers": ["Лёгкие", "Пищевод", "Гортань", "Глотка"],
+      "correct": 3
+    },
+    {
+      "q": "Какой процесс происходит в митохондриях?",
+      "answers": ["Фотосинтез", "Синтез белка", "Клеточное дыхание", "Деление клетки"],
+      "correct": 2
+    },
+    {
+      "q": "Какой тип деления клеток приводит к образованию гамет?",
+      "answers": ["Митоз", "Мейоз", "Амитоз", "Эндомитоз"],
+      "correct": 1
+    },
+    {
+      "q": "Какая химическая формула у воды?",
+      "answers": ["CO2", "O2", "H2O", "NaCl"],
+      "correct": 2
+    },
+    {
+      "q": "Какой элемент имеет атомный номер 6?",
+      "answers": ["Кислород", "Азот", "Углерод", "Водород"],
+      "correct": 2
+    },
+    {
+      "q": "Какой тип связи образуется между атомами водорода и кислорода в молекуле воды?",
+      "answers": ["Ионная", "Ковалентная полярная", "Ковалентная неполярная", "Металлическая"],
+      "correct": 1
+    },
+    {
+      "q": "Какое вещество является продуктом реакции между кислотой и основанием?",
+      "answers": ["Соль", "Вода", "Соль и вода", "Оксид"],
+      "correct": 2
+    },
+    {
+      "q": "Какой элемент образует простое вещество, необходимое для дыхания?",
+      "answers": ["Азот", "Кислород", "Водород", "Углерод"],
+      "correct": 1
+    },
+    {
+      "q": "Как называется процесс перехода вещества из твёрдого состояния в газообразное?",
+      "answers": ["Плавление", "Испарение", "Сублимация", "Конденсация"],
+      "correct": 2
+    },
+    {
+      "q": "Какой закон физики описывает гравитационное взаимодействие?",
+      "answers": ["Закон Ома", "Закон Ньютона", "Закон Кулона", "Закон сохранения энергии"],
+      "correct": 1
+    },
+    {
+      "q": "Единица измерения силы тока?",
+      "answers": ["Вольт", "Ом", "Ампер", "Ватт"],
+      "correct": 2
+    },
+    {
+      "q": "Что такое ускорение свободного падения на Земле (приблизительно)?",
+      "answers": ["9.8 м/с", "9.8 м/с²", "9.8 Н", "9.8 Дж"],
+      "correct": 1
+    },
+    {
+      "q": "Какой закон описывает равновесие сил?",
+      "answers": ["Первый закон Ньютона", "Второй закон Ньютона", "Третий закон Ньютона", "Закон всемирного тяготения"],
+      "correct": 0
+    },
+    {
+      "q": "Какая сила препятствует движению одного тела по поверхности другого?",
+      "answers": ["Сила тяжести", "Сила упругости", "Сила трения", "Сила инерции"],
+      "correct": 2
+    },
+    {
+      "q": "Что измеряется в Джоулях?",
+      "answers": ["Сила", "Работа", "Мощность", "Давление"],
+      "correct": 1
+    },
+    {
+      "q": "Какой процесс передачи тепла возможен в вакууме?",
+      "answers": ["Теплопроводность", "Конвекция", "Излучение", "Все перечисленные"],
+      "correct": 2
+    },
+    {
+      "q": "Какая самая длинная река в мире?",
+      "answers": ["Нил", "Амазонка", "Янцзы", "Миссисипи"],
+      "correct": 1
+    },
+    {
+      "q": "Столица Японии?",
+      "answers": ["Пекин", "Сеул", "Токио", "Бангкок"],
+      "correct": 2
+    },
+    {
+      "q": "Какой океан самый большой?",
+      "answers": ["Атлантический", "Индийский", "Тихий", "Северный Ледовитый"],
+      "correct": 2
+    },
+    {
+      "q": "Какая самая высокая гора в мире?",
+      "answers": ["Килиманджаро", "Эльбрус", "Эверест", "Аконкагуа"],
+      "correct": 2
+    },
+    {
+      "q": "Какой континент пересекают все меридианы?",
+      "answers": ["Евразия", "Африка", "Северная Америка", "Антарктида"],
+      "correct": 3
+    },
+    {
+      "q": "Какой климатический пояс характерен для большей части России?",
+      "answers": ["Экваториальный", "Тропический", "Умеренный", "Арктический"],
+      "correct": 2
+    },
+    {
+      "q": "Какой материк омывается четырьмя океанами?",
+      "answers": ["Евразия", "Африка", "Северная Америка", "Австралия"],
+      "correct": 0
+    },
+    {
+      "q": "Что означает аббревиатура CPU?",
+      "answers": ["Central Processing Unit", "Computer Personal Unit", "Central Power Unit", "Core Processing Unit"],
+      "correct": 0
+    },
+    {
+      "q": "Какой протокол используется для передачи гипертекста?",
+      "answers": ["FTP", "HTTP", "SMTP", "TCP"],
+      "correct": 1
+    },
+    {
+      "q": "Какая структура данных работает по принципу 'первым пришёл - первым ушёл'?",
+      "answers": ["Стек", "Очередь", "Массив", "Список"],
+      "correct": 1
+    },
+    {
+      "q": "Что такое переменная в программировании?",
+      "answers": ["Константа", "Имя функции", "Именованный участок памяти", "Комментарий"],
+      "correct": 2
+    },
+    {
+      "q": "Какой язык программирования используется для веб-разработки на стороне клиента?",
+      "answers": ["Python", "Java", "JavaScript", "C++"],
+      "correct": 2
+    },
+    {
+      "q": "Что такое IP-адрес?",
+      "answers": ["Имя пользователя", "Физический адрес компьютера", "Уникальный сетевой идентификатор", "Пароль"],
+      "correct": 2
+    },
+    {
+      "q": "Что такое операционная система?",
+      "answers": ["Программа для работы с текстом", "Система управления базами данных", "Комплекс программ, управляющих работой компьютера", "Тип компьютера"],
+      "correct": 2
+    }
+  ],
+  "ro": [
+    {
+      "q": "Cât este sin(π/2)?",
+      "answers": ["0", "1", "-1", "√2/2"],
+      "correct": 1
+    },
+    {
+      "q": "Derivata funcției f(x) = x³?",
+      "answers": ["x²", "3x²", "3x", "x³/3"],
+      "correct": 1
+    },
+    {
+      "q": "Rezolvați ecuația: 2x + 5 = 13",
+      "answers": ["x = 3", "x = 4", "x = 5", "x = 6"],
+      "correct": 1
+    },
+    {
+      "q": "Cât este cos(0)?",
+      "answers": ["0", "1", "-1", "√3/2"],
+      "correct": 1
+    },
+    {
+      "q": "Integrala ∫2x dx = ?",
+      "answers": ["x", "x² + C", "2x² + C", "x²/2 + C"],
+      "correct": 1
+    },
+    {
+      "q": "Logaritm log₂(8) = ?",
+      "answers": ["2", "3", "4", "8"],
+      "correct": 1
+    },
+    {
+      "q": "Cât este √81?",
+      "answers": ["7", "8", "9", "10"],
+      "correct": 2
+    },
+    {
+      "q": "Care este unitatea de bază a eredității?",
+      "answers": ["Celula", "Gena", "Proteina", "Cromozomul"],
+      "correct": 1
+    },
+    {
+      "q": "Procesul de transformare a luminii în energie la plante se numește...",
+      "answers": ["Fotosinteză", "Respirație", "Transpirație", "Osmoză"],
+      "correct": 0
+    },
+    {
+      "q": "Care element stă la baza chimiei organice?",
+      "answers": ["Oxigen", "Hidrogen", "Azot", "Carbon"],
+      "correct": 3
+    },
+    {
+      "q": "Ce tip de țesut este responsabil de transmiterea impulsurilor nervoase?",
+      "answers": ["Epitelial", "Conjunctiv", "Muscular", "Nervos"],
+      "correct": 3
+    },
+    {
+      "q": "Care organ face parte din sistemul respirator și digestiv?",
+      "answers": ["Plămâni", "Esofag", "Laringe", "Faringe"],
+      "correct": 3
+    },
+    {
+      "q": "Ce proces are loc în mitocondrii?",
+      "answers": ["Fotosinteză", "Sinteza proteinelor", "Respirația celulară", "Diviziunea celulară"],
+      "correct": 2
+    },
+    {
+      "q": "Ce tip de diviziune celulară duce la formarea gameților?",
+      "answers": ["Mitoză", "Meioză", "Amitoză", "Endomitoză"],
+      "correct": 1
+    },
+    {
+      "q": "Care este formula chimică a apei?",
+      "answers": ["CO2", "O2", "H2O", "NaCl"],
+      "correct": 2
+    },
+    {
+      "q": "Ce element are numărul atomic 6?",
+      "answers": ["Oxigen", "Azot", "Carbon", "Hidrogen"],
+      "correct": 2
+    },
+    {
+      "q": "Ce tip de legătură se formează între atomii de hidrogen și oxigen în molecula de apă?",
+      "answers": ["Ionică", "Covalentă polară", "Covalentă nepolară", "Metalică"],
+      "correct": 1
+    },
+    {
+      "q": "Ce substanță este produsul reacției dintre un acid și o bază?",
+      "answers": ["O sare", "Apa", "O sare și apă", "Un oxid"],
+      "correct": 2
+    },
+    {
+      "q": "Ce element formează o substanță simplă necesară pentru respirație?",
+      "answers": ["Azot", "Oxigen", "Hidrogen", "Carbon"],
+      "correct": 1
+    },
+    {
+      "q": "Cum se numește procesul de trecere a unei substanțe din stare solidă în stare gazoasă?",
+      "answers": ["Topire", "Evaporare", "Sublimare", "Condensare"],
+      "correct": 2
+    },
+    {
+      "q": "Ce lege a fizicii descrie interacțiunea gravitațională?",
+      "answers": ["Legea lui Ohm", "Legea lui Newton", "Legea lui Coulomb", "Legea conservării energiei"],
+      "correct": 1
+    },
+    {
+      "q": "Unitatea de măsură a curentului electric?",
+      "answers": ["Volt", "Ohm", "Amper", "Watt"],
+      "correct": 2
+    },
+    {
+      "q": "Ce este accelerația gravitațională pe Pământ (aproximativ)?",
+      "answers": ["9.8 m/s", "9.8 m/s²", "9.8 N", "9.8 J"],
+      "correct": 1
+    },
+    {
+      "q": "Ce lege descrie echilibrul forțelor?",
+      "answers": ["Prima lege a lui Newton", "A doua lege a lui Newton", "A treia lege a lui Newton", "Legea gravitației universale"],
+      "correct": 0
+    },
+    {
+      "q": "Ce forță se opune mișcării unui corp pe suprafața altui corp?",
+      "answers": ["Forța gravitațională", "Forța de elasticitate", "Forța de frecare", "Forța de inerție"],
+      "correct": 2
+    },
+    {
+      "q": "Ce se măsoară în Jouli?",
+      "answers": ["Forța", "Lucrul mecanic", "Puterea", "Presiunea"],
+      "correct": 1
+    },
+    {
+      "q": "Ce proces de transmitere a căldurii este posibil în vid?",
+      "answers": ["Conductibilitate termică", "Convecție", "Radiație", "Toate cele enumerate"],
+      "correct": 2
+    },
+    {
+      "q": "Care este cel mai lung fluviu din lume?",
+      "answers": ["Nil", "Amazon", "Yangtze", "Mississippi"],
+      "correct": 1
+    },
+    {
+      "q": "Care este capitala Japoniei?",
+      "answers": ["Beijing", "Seul", "Tokyo", "Bangkok"],
+      "correct": 2
+    },
+    {
+      "q": "Care ocean este cel mai mare?",
+      "answers": ["Atlantic", "Indian", "Pacific", "Arctic"],
+      "correct": 2
+    },
+    {
+      "q": "Care este cel mai înalt munte din lume?",
+      "answers": ["Kilimanjaro", "Elbrus", "Everest", "Aconcagua"],
+      "correct": 2
+    },
+    {
+      "q": "Ce continent este traversat de toate meridianele?",
+      "answers": ["Eurasia", "Africa", "America de Nord", "Antarctica"],
+      "correct": 3
+    },
+    {
+      "q": "Ce tip de climă este caracteristic pentru cea mai mare parte a Rusiei?",
+      "answers": ["Ecuatorială", "Tropicală", "Temperată", "Arctică"],
+      "correct": 2
+    },
+    {
+      "q": "Ce continent este înconjurat de patru oceane?",
+      "answers": ["Eurasia", "Africa", "America de Nord", "Australia"],
+      "correct": 0
+    },
+    {
+      "q": "Ce înseamnă acronimul CPU?",
+      "answers": ["Central Processing Unit", "Computer Personal Unit", "Central Power Unit", "Core Processing Unit"],
+      "correct": 0
+    },
+    {
+      "q": "Ce protocol este folosit pentru transferul de hipertext?",
+      "answers": ["FTP", "HTTP", "SMTP", "TCP"],
+      "correct": 1
+    },
+    {
+      "q": "Ce structură de date funcționează pe principiul 'primul venit, primul plecat'?",
+      "answers": ["Stivă", "Coadă", "Vector", "Listă"],
+      "correct": 1
+    },
+    {
+      "q": "Ce este o variabilă în programare?",
+      "answers": ["O constantă", "Numele unei funcții", "O zonă de memorie denumită", "Un comentariu"],
+      "correct": 2
+    },
+    {
+      "q": "Ce limbaj de programare este folosit pentru dezvoltarea web pe partea de client?",
+      "answers": ["Python", "Java", "JavaScript", "C++"],
+      "correct": 2
+    },
+    {
+      "q": "Ce este o adresă IP?",
+      "answers": ["Un nume de utilizator", "Adresa fizică a computerului", "Un identificator unic de rețea", "O parolă"],
+      "correct": 2
+    },
+    {
+      "q": "Ce este un sistem de operare?",
+      "answers": ["Un program pentru procesarea textului", "Un sistem de gestionare a bazelor de date", "Un ansamblu de programe care gestionează resursele computerului", "Un tip de computer"],
+      "correct": 2
+    }
+  ]
+}
