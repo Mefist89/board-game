@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест отправки данных в Google Sheets</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .loading {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Тест отправки данных в Google Sheets</h1>
+        <form id="testForm">
+            <div class="form-group">
+                <label for="firstName">Имя:</label>
+                <input type="text" id="firstName" value="Тест" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="lastName">Фамилия:</label>
+                <input type="text" id="lastName" value="Пользователь" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="group">Группа:</label>
+                <input type="text" id="group" value="Тестовая группа" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="score">Оценка:</label>
+                <input type="number" id="score" min="0" max="10" value="8" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="rolls">Количество попыток:</label>
+                <input type="number" id="rolls" min="1" value="5" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="testType">Тип теста:</label>
+                <select id="testType">
+                    <option value="basic">Базовая отправка</option>
+                    <option value="detailed">Детальная отправка</option>
+                </select>
+            </div>
+            
+            <button type="submit" id="submitBtn">Отправить данные</button>
+        </form>
+        
+        <div id="status" class="status"></div>
+    </div>
+
+    <script>
+        document.getElementById('testForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const statusDiv = document.getElementById('status');
+            
+            // Получаем данные формы
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const group = document.getElementById('group').value;
+            const score = parseInt(document.getElementById('score').value);
+            const rolls = parseInt(document.getElementById('rolls').value);
+            const testType = document.getElementById('testType').value;
+            
+            // Показываем статус загрузки
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправка...';
+            statusDiv.style.display = 'block';
+            statusDiv.className = 'status loading';
+            statusDiv.innerHTML = '📤 Отправка данных...';
+            
+            try {
+                // Подготовка данных для отправки
+                let data;
+                
+                if (testType === 'basic') {
+                    // Базовая отправка
+                    data = {
+                        nume: lastName,
+                        prenume: firstName,
+                        clasa: group,
+                        scor_numeric: score,
+                        scor_total: 10,
+                        scor_format: `${score}/10`,
+                        procent: `${Math.round((score / 10) * 100)}%`,
+                        evaluare: score === 10 ? 'EXCELENT! 🏆' : score >= 7 ? 'FOARTE BINE! 👍' : score >= 5 ? 'BINE, dar mai exersează! 📚' : 'Ai nevoie de mai multă practică! 💪',
+                        data_ora: new Date().toLocaleString('ro-RO'),
+                        verificare_detalii: JSON.stringify([]),
+                        grafic1_raspuns: '',
+                        grafic1_corect_functie: '',
+                        grafic1_status: '',
+                        grafic1_punctaj: 0,
+                        grafic2_raspuns: '',
+                        grafic2_corect_functie: '',
+                        grafic2_status: '',
+                        grafic2_punctaj: 0,
+                        grafic3_raspuns: '',
+                        grafic3_corect_functie: '',
+                        grafic3_status: '',
+                        grafic3_punctaj: 0
+                    };
+                } else {
+                    // Детальная отправка
+                    data = {
+                        nume: lastName,
+                        prenume: firstName,
+                        clasa: group,
+                        scor_numeric: score,
+                        scor_total: 10,
+                        scor_format: `${score}/10`,
+                        procent: `${Math.round((score / 10) * 100)}%`,
+                        evaluare: score === 10 ? 'EXCELENT! 🏆' : score >= 7 ? 'FOARTE BINE! 👍' : score >= 5 ? 'BINE, dar mai exersează! 📚' : 'Ai nevoie de mai multă practică! 💪',
+                        data_ora: new Date().toLocaleString('ro-RO'),
+                        verificare_detalii: JSON.stringify([
+                            { task: 1, userAnswer: 'v = 2 + 3t', correctAnswer: 'v = 2 + 3t', isCorrect: true, score: 1 },
+                            { task: 2, userAnswer: 'v = 1 + 4t', correctAnswer: 'v = 1 + 4t', isCorrect: true, score: 1 },
+                            { task: 3, userAnswer: 'v = 5 + 2t', correctAnswer: 'v = 5 + 2t', isCorrect: true, score: 1 }
+                        ]),
+                        grafic1_raspuns: 'v = 2 + 3t',
+                        grafic1_corect_functie: 'v = 2 + 3t',
+                        grafic1_status: 'CORECT',
+                        grafic1_punctaj: 1,
+                        grafic2_raspuns: 'v = 1 + 4t',
+                        grafic2_corect_functie: 'v = 1 + 4t',
+                        grafic2_status: 'CORECT',
+                        grafic2_punctaj: 1,
+                        grafic3_raspuns: 'v = 5 + 2t',
+                        grafic3_corect_functie: 'v = 5 + 2t',
+                        grafic3_status: 'CORECT',
+                        grafic3_punctaj: 1
+                    };
+                }
+                
+                // Отправка данных в Google Sheets через Google Apps Script
+                                const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxgWV2eTIBYVa_PQ_WK6geX10cisRJTUFUKX_OwUGrjxzcD_JasuDHhvS7GPvAYW_Jm/exec';
+                
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Важно для Google Apps Script
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                // Так как при no-cors не возвращается ответ, предполагаем успех
+                statusDiv.className = 'status success';
+                statusDiv.innerHTML = `
+                    <strong>✅ Данные успешно отправлены!</strong><br>
+                    Тип теста: ${testType === 'basic' ? 'Базовая отправка' : 'Детальная отправка'}<br>
+                    Пользователь: ${firstName} ${lastName}<br>
+                    Оценка: ${score}/10 (${Math.round((score / 10) * 100)}%)<br>
+                    Группа: ${group}
+                `;
+                
+                console.log('Данные успешно отправлены в Google Sheets:', data);
+                
+            } catch (error) {
+                console.error('Ошибка при отправке данных:', error);
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = `
+                    <strong>❌ Ошибка при отправке данных!</strong><br>
+                    ${error.message || 'Неизвестная ошибка'}
+                `;
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Отправить данные';
+            }
+        });
+    </script>
+</body>
+</html>
