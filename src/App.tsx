@@ -1,9 +1,9 @@
-import MathBoardGame from './math_board_game';
+import BoardGame from './board_game';
 import './App.css';
 
 function App() {
   return (
-    <MathBoardGame />
+    <BoardGame />
   );
 }
 

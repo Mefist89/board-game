@@ -7,10 +7,10 @@ import ResultsPage from './pages/ResultsPage';
 import GamePage from './pages/GamePage';
 import { useGame } from './context/GameContext';
 
-const MathBoardGameContent: React.FC = () => {
+const BoardGameContent: React.FC = () => {
   const { screen } = useGame();
 
-  const renderScreen = () => {
+ const renderScreen = () => {
     switch (screen) {
       case 'menu':
         return <MenuPage />;
@@ -30,12 +30,12 @@ const MathBoardGameContent: React.FC = () => {
   return renderScreen();
 };
 
-const MathBoardGame: React.FC = () => {
+const BoardGame: React.FC = () => {
   return (
     <GameProvider>
-      <MathBoardGameContent />
+      <BoardGameContent />
     </GameProvider>
   );
 };
 
-export default MathBoardGame;
+export default BoardGame;
