@@ -27,11 +27,23 @@ interface GameContextType {
   translations: any;
   colors: string[];
   totalSquares: number;
- questions: Record<string, { q: string; answers: string[]; correct: number }[]>;
- rollDice: () => void;
+  questions: Record<string, { q: string; answers: string[]; correct: number }[]>;
+  gameHistory: GameHistoryEntry[];
+  addToGameHistory: (entry: GameHistoryEntry) => void;
+  rollDice: () => void;
   showQuestion: () => void;
   handleAnswer: () => void;
   resetGame: () => void;
+}
+
+interface GameHistoryEntry {
+ question: string;
+  userAnswer: string | number;
+  correctAnswer: string | number;
+  isCorrect: boolean;
+  score: number;
+  attempts: number;
+  timestamp: Date;
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -60,6 +72,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [showResult, setShowResult] = useState(false);
   const [isRolling, setIsRolling] = useState(false);
   const [totalRolls, setTotalRolls] = useState(0);
+  const [gameHistory, setGameHistory] = useState<GameHistoryEntry[]>([]);
 
   const translations = {
     ru: {
@@ -126,7 +139,11 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       ],
       creatorText: 'Joc creat pentru învățarea matematicii, chimiei, biologiei, fizicii, geografiei și informaticii elevilor claselor 10-12'
     }
- };
+  };
+
+  const addToGameHistory = (entry: GameHistoryEntry) => {
+    setGameHistory(prev => [...prev, entry]);
+  };
 
   const colors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF'];
   const totalSquares = 55;
@@ -207,41 +224,43 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   };
 
   return (
-    <GameContext.Provider
-      value={{
-        screen,
-        setScreen,
-        language,
-        setLanguage,
-        position,
-        setPosition,
-        score,
-        setScore,
-        diceValue,
-        setDiceValue,
-        currentQuestion,
-        setCurrentQuestion,
-        attempts,
-        setAttempts,
-        selectedAnswer,
-        setSelectedAnswer,
-        showResult,
-        setShowResult,
-        isRolling,
-        setIsRolling,
-        totalRolls,
-        setTotalRolls,
-        translations,
-        colors,
-        totalSquares,
-        questions,
-        rollDice,
-        showQuestion,
-        handleAnswer,
-        resetGame
-      }}
-    >
-      {children}
-    </GameContext.Provider>
-  );
-};
+      <GameContext.Provider
+        value={{
+          screen,
+          setScreen,
+          language,
+          setLanguage,
+          position,
+          setPosition,
+          score,
+          setScore,
+          diceValue,
+          setDiceValue,
+          currentQuestion,
+          setCurrentQuestion,
+          attempts,
+          setAttempts,
+          selectedAnswer,
+          setSelectedAnswer,
+          showResult,
+          setShowResult,
+          isRolling,
+          setIsRolling,
+          totalRolls,
+          setTotalRolls,
+          translations,
+          colors,
+          totalSquares,
+          questions,
+          gameHistory,
+          addToGameHistory,
+          rollDice,
+          showQuestion,
+          handleAnswer,
+          resetGame
+        }}
+      >
+        {children}
+      </GameContext.Provider>
+    );
+  };

@@ -4,12 +4,13 @@ interface UserInfoFormProps {
   onSubmit: (userInfo: { firstName: string; lastName: string; group: string }) => void;
   loading: boolean;
   error: string | null;
+  submissionStatus?: string;
 }
 
-const UserInfoForm: React.FC<UserInfoFormProps> = ({ onSubmit, loading, error }) => {
+const UserInfoForm: React.FC<UserInfoFormProps> = ({ onSubmit, loading, error, submissionStatus }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [group, setGroup] = useState('');
+ const [group, setGroup] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,12 +32,12 @@ const UserInfoForm: React.FC<UserInfoFormProps> = ({ onSubmit, loading, error })
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-50"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             required
           />
         </div>
         <div>
-          <label htmlFor="lastName" className="block text-sm font-medium text-gray-70 mb-1">
+          <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
             Фамилия *
           </label>
           <input
@@ -62,6 +63,7 @@ const UserInfoForm: React.FC<UserInfoFormProps> = ({ onSubmit, loading, error })
           />
         </div>
         {error && <div className="text-red-500 text-sm">{error}</div>}
+        {submissionStatus && !loading && <div className="text-blue-500 text-sm">{submissionStatus}</div>}
         <button
           type="submit"
           disabled={loading}
